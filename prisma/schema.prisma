@@ -1,0 +1,66 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Post {
+  id             String    @id @default(cuid())
+  title          String
+  body           String
+  wallet_address String
+  crawl          Crawl     @relation(fields: [crawl_id], references: [id])
+  crawl_id       String    @unique
+  subpin         Subpin    @relation(fields: [subpin_id], references: [id])
+  subpin_id      String
+  created_at     DateTime
+  votes          Vote[]
+  comments       Comment[]
+}
+
+model Comment {
+  id             String   @id @default(cuid())
+  wallet_address String
+  text           String
+  post           Post     @relation(fields: [post_id], references: [id])
+  post_id        String
+  created_at     DateTime
+}
+
+model Crawl {
+  id          String   @id @default(cuid())
+  url         String   @unique
+  title       String
+  description String
+  thumbnail   String
+  created_at  DateTime
+  Post        Post?
+
+  @@index([url])
+}
+
+model Subpin {
+  id         String   @id @default(cuid())
+  topic      String   @unique
+  count      Int
+  created_at DateTime
+  postId     String?
+  Post       Post[]
+
+  @@index([topic])
+}
+
+model Vote {
+  id             String   @id @default(cuid())
+  post_id        String
+  wallet_address String
+  created_at     DateTime
+  post           Post     @relation(fields: [post_id], references: [id])
+  upvote         Boolean?
+}
