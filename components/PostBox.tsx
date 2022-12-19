@@ -111,9 +111,9 @@ const PostBox = ({ subpin, setPosts, setCategorys }: Props) => {
 					metadata: {
 						name: "Pin NFT",
 						description: "핀투톡 증명서를 위한 NFT에요!",
+						image: newCrawl.thumbnail,
 						properties: {
 							post_id: post.id,
-							image: newCrawl.thumbnail,
 							web_title: newCrawl.title,
 							web_description: newCrawl.description,
 							web_url: newCrawl.url,
@@ -138,9 +138,9 @@ const PostBox = ({ subpin, setPosts, setCategorys }: Props) => {
 					metadata: {
 						name: "Pin NFT",
 						description: "핀투톡 증명서를 위한 NFT에요!",
+						image: newCrawl.thumbnail,
 						properties: {
 							post_id: post.id,
-							image: newCrawl.thumbnail,
 							web_title: newCrawl.title,
 							web_description: newCrawl.description,
 							web_url: newCrawl.url,
