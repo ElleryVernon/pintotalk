@@ -40,7 +40,7 @@ const Post = ({ post, isIn }: Props) => {
 										</span>
 										{"   "}
 									</Link>
-									• Posted By w/{post.wallet_address?.slice(0, 4)}...
+									• Posted By {post.wallet_address?.slice(0, 4)}...
 									{post.wallet_address?.slice(post.wallet_address?.length - 4)} •
 									<TimeAgo date={date} local="kr" />
 								</p>
@@ -95,7 +95,7 @@ const Post = ({ post, isIn }: Props) => {
 							<p className="text-xs text-gray-400">
 								<Link href={`/subpin/${post.subpin?.topic}`}>
 									<span className="font-bold text-black hover:text-orange-400 hover:underline">
-										r/{post.subpin?.topic}
+										{post.subpin?.topic}
 									</span>
 									{"   "}
 								</Link>

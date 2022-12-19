@@ -113,6 +113,7 @@ const PostBox = ({ subpin, setPosts, setCategorys }: Props) => {
 						description: "핀투톡 증명서를 위한 NFT에요!",
 						properties: {
 							post_id: post.id,
+							image: newCrawl.thumbnail,
 							web_title: newCrawl.title,
 							web_description: newCrawl.description,
 							web_url: newCrawl.url,
@@ -133,6 +134,22 @@ const PostBox = ({ subpin, setPosts, setCategorys }: Props) => {
 					wallet_address: address,
 				});
 				await axios.patch(`/api/subpin/${category.id}`, { count: category.count + 1 });
+				await mintNft({
+					metadata: {
+						name: "Pin NFT",
+						description: "핀투톡 증명서를 위한 NFT에요!",
+						properties: {
+							post_id: post.id,
+							image: newCrawl.thumbnail,
+							web_title: newCrawl.title,
+							web_description: newCrawl.description,
+							web_url: newCrawl.url,
+							post_title: formData.postTitle,
+							post_body: formData.postBody,
+						},
+					},
+					to: address as string,
+				});
 			}
 			setValue("postUrl", "");
 			setValue("postBody", "");
@@ -141,7 +158,6 @@ const PostBox = ({ subpin, setPosts, setCategorys }: Props) => {
 			setValue("subreddit", "");
 			setIsUrl(false);
 			setUrl("");
-
 			await refetch();
 			toast.success("완료!", { id: notification });
 		} catch (err) {

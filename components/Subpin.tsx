@@ -17,7 +17,7 @@ const Subpin = ({ idx, topic, thumbnail, isPost, postId }: Props) => {
 				<p>{idx + 1}</p>
 				<ChevronUpDownIcon className="h-4 w-4 flex-shrink-0 text-green-400" />
 				<Avatar seed={topic} isPost={isPost} thumbnail={thumbnail} />
-				<p className="flex-1 truncate">r/{topic}</p>
+				<p className="flex-1 truncate">{topic}</p>
 			</div>
 		</Link>
 	);
